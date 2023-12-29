@@ -25,7 +25,6 @@ public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
         String method = request.getParameter("method");
-        System.out.printf(method);
         switch (method) {
             case "list":
                 request.setAttribute("users", this.userServiceImpl.getAllUsers());
@@ -37,7 +36,16 @@ public class UserServlet extends HttpServlet {
                 request.setAttribute("users", this.userServiceImpl.search(key, keyword));
                 request.getRequestDispatcher("admin.jsp").forward(request, response);
                 break;
+            case "save":
+                Integer id = Integer.valueOf(request.getParameter("id"));
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
+                String email = request.getParameter("email");
+                String telephone = request.getParameter("telephone");
+                String gender = request.getParameter("gender");
+                this.userServiceImpl.save(new User(id, username, password, email, telephone, gender));
+                response.sendRedirect("/userManager?method=list");
+                break;
         }
-
     }
 }
