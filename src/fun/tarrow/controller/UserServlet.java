@@ -4,8 +4,6 @@ import fun.tarrow.service.UserServiceImpl;
 import fun.tarrow.entity.User;
 
 import java.io.*;
-import java.sql.SQLException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/userManager")
 public class UserServlet extends HttpServlet {
-    private UserServiceImpl userServiceImpl = new UserServiceImpl();
+    private final UserServiceImpl userServiceImpl = new UserServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -25,6 +23,12 @@ public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
         String method = request.getParameter("method");
+        int id;
+        String username;
+        String password;
+        String email;
+        String telephone;
+        String gender;
         switch (method) {
             case "list":
                 request.setAttribute("users", this.userServiceImpl.getAllUsers());
@@ -37,13 +41,27 @@ public class UserServlet extends HttpServlet {
                 request.getRequestDispatcher("admin.jsp").forward(request, response);
                 break;
             case "save":
-                Integer id = Integer.valueOf(request.getParameter("id"));
-                String username = request.getParameter("username");
-                String password = request.getParameter("password");
-                String email = request.getParameter("email");
-                String telephone = request.getParameter("telephone");
-                String gender = request.getParameter("gender");
-                this.userServiceImpl.save(new User(id, username, password, email, telephone, gender));
+                username = request.getParameter("username");
+                password = request.getParameter("password");
+                email = request.getParameter("email");
+                telephone = request.getParameter("telephone");
+                gender = request.getParameter("gender");
+                this.userServiceImpl.save(new User(username, password, email, telephone, gender));
+                response.sendRedirect("/userManager?method=list");
+                break;
+            case "update":
+                id = Integer.parseInt(request.getParameter("id"));
+                username = request.getParameter("username");
+                password = request.getParameter("password");
+                email = request.getParameter("email");
+                telephone = request.getParameter("telephone");
+                gender = request.getParameter("gender");
+                this.userServiceImpl.update(new User(id, username, password, email, telephone, gender));
+                response.sendRedirect("/userManager?method=list");
+                break;
+            case "delete":
+                id = Integer.parseInt(request.getParameter("id"));
+                this.userServiceImpl.delete(id);
                 response.sendRedirect("/userManager?method=list");
                 break;
         }

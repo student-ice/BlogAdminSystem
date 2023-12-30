@@ -26,4 +26,20 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("添加失败");
          }
     }
+
+    @Override
+    public void update(User user) {
+        Integer save = this.userDaoImpl.update(user);
+        if (save != 1) {
+            throw new RuntimeException("修改失败");
+        }
+    }
+
+    @Override
+    public void delete(Integer id) {
+        Integer save = this.userDaoImpl.delete(id);
+        if (save != 1) {
+            throw new RuntimeException("删除失败");
+        }
+    }
 }

@@ -70,22 +70,65 @@ public class UserDaoImpl implements  UserDao{
     public Integer save(User user) {
         Connection conn = DBUtil.getConnection();
         List<User> users = new ArrayList<>();
-        String sql = "insert into user(id,username,password,email,telephone,gender) values (?,?,?,?,?,?)";
+        String sql = "insert into user(username,password,email,telephone,gender) values (?,?,?,?,?)";
         PreparedStatement statement = null;
         Integer result = null;
         try {
             statement = conn.prepareStatement(sql);
-            statement.setInt(1,user.getId());
-            statement.setString(2,user.getUsername());
-            statement.setString(3,user.getPassword());
-            statement.setString(4,user.getEmail());
-            statement.setString(5,user.getTelephone());
-            statement.setString(6,user.getGender());
+            statement.setString(1,user.getUsername());
+            statement.setString(2,user.getPassword());
+            statement.setString(3,user.getEmail());
+            statement.setString(4,user.getTelephone());
+            statement.setString(5,user.getGender());
             result = statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             DBUtil.release(conn,statement,null );
+        }
+
+        return result;
+    }
+
+    @Override
+    public Integer update(User user) {
+        Connection conn = DBUtil.getConnection();
+        List<User> users = new ArrayList<>();
+        String sql = "update user set username = ?,password = ?,email = ?,telephone = ?,gender = ? where id = ?";
+        PreparedStatement statement = null;
+        Integer result = null;
+        try {
+            statement = conn.prepareStatement(sql);
+            statement.setString(1,user.getUsername());
+            statement.setString(2,user.getPassword());
+            statement.setString(3,user.getEmail());
+            statement.setString(4,user.getTelephone());
+            statement.setString(5,user.getGender());
+            statement.setInt(6,user.getId());
+            result = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DBUtil.release(conn,statement,null );
+        }
+
+        return result;
+    }
+
+    @Override
+    public Integer delete(Integer id) {
+        Connection conn = DBUtil.getConnection();
+        List<User> users = new ArrayList<>();
+        String sql = "delete from user where id = " + id;
+        PreparedStatement statement = null;
+        Integer result = null;
+        try {
+            statement = conn.prepareStatement(sql);
+            result = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DBUtil.release(conn, statement, null);
         }
 
         return result;

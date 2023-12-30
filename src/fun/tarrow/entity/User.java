@@ -15,6 +15,14 @@ public class User {
 
     }
 
+    public User(String username, String password, String email, String telephone, String gender) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.telephone = telephone;
+        this.gender = gender;
+    }
+
     public User(Integer id, String username, String password, String email, String telephone, String gender) {
         this.id = id;
         this.username = username;

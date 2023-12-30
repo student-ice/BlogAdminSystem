@@ -1,3 +1,3 @@
 function change(name) {
-    document.querySelector('iframe').setAttribute('src', name + '.jsp');
+    document.querySelector('iframe').setAttribute('src','/' +name+'?method=list');
 }
