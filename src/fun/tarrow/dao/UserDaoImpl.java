@@ -118,7 +118,6 @@ public class UserDaoImpl implements  UserDao{
     @Override
     public Integer delete(Integer id) {
         Connection conn = DBUtil.getConnection();
-        List<User> users = new ArrayList<>();
         String sql = "delete from user where id = " + id;
         PreparedStatement statement = null;
         Integer result = null;

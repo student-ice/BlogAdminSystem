@@ -32,4 +32,4 @@ bin/
 
 /web/WEB-INF/classes/*
 
-idea/
+.idea/*
