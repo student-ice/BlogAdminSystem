@@ -1,8 +1,6 @@
 package fun.tarrow.controller;
 
 import fun.tarrow.service.BlogServiceImpl;
-import fun.tarrow.service.UserServiceImpl;
-import fun.tarrow.entity.User;
 
 import java.io.*;
 import javax.servlet.ServletException;

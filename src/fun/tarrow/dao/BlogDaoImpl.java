@@ -1,7 +1,6 @@
 package fun.tarrow.dao;
 
 import fun.tarrow.entity.Blog;
-import fun.tarrow.entity.User;
 import fun.tarrow.util.DBUtil;
 
 import java.sql.Connection;

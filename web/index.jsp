@@ -25,7 +25,7 @@
 
 <body>
 <!-- 顶部导航栏 -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">管理后台</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -42,7 +42,7 @@
 </nav>
 <!-- 顶部导航栏结束 -->
 <!-- 使用iframe ，以切换用户管理页面和博客管理页面 -->
-<iframe src="/userManager?method=list" width="100%" height="100%"></iframe>
+<iframe src="/userManager?method=list" width="100%" height="100%" style="padding-top: 56px;"></iframe>
 <script src="./js/bootstrap.bundle.min.js"></script>
 <script src="./js/index.js"></script>
 </body>
