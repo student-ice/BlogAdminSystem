@@ -1,5 +1,6 @@
 <%@ page import="fun.tarrow.entity.User" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.mysql.cj.Session" %><%--
   Created by IntelliJ IDEA.
   User: ice
   Date: 2023/12/28
@@ -38,6 +39,31 @@
                 </li>
             </ul>
         </div>
+        <%-- 最右侧显示用户名和退出登录 --%>
+        <%
+            // 检查用户是否已登录，这里假设已登录的条件是用户的登录状态存储在session中
+            String username = null;
+            if (session.getAttribute("username") != null) {
+                username = session.getAttribute("username").toString();
+            }
+            if (username != null) {
+        %>
+        <div class="btn-group">
+            <div class="dropdown" style="margin-right: 20px;">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <%=username%>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"  style="min-width: 92px;">
+                    <li  style="width: 92px;"><a class="dropdown-item" href="/loginManager?method=logout">退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+        <%
+            } else {
+                // 如果未登录，重定向到登录页面
+                response.sendRedirect("/login.jsp");
+            }
+        %>
     </div>
 </nav>
 <!-- 顶部导航栏结束 -->
