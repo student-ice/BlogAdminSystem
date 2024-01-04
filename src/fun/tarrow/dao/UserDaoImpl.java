@@ -7,9 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoImpl implements  UserDao{
+public class UserDaoImpl implements UserDao {
 
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         Connection conn = DBUtil.getConnection();
         List<User> users = new ArrayList<>();
         String sql = "SELECT * FROM user";
@@ -31,14 +31,14 @@ public class UserDaoImpl implements  UserDao{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            DBUtil.release(conn,statement,rs);
+            DBUtil.release(conn, statement, rs);
         }
 
         return users;
     }
 
     @Override
-    public List<User> search(String key,String keyword) {
+    public List<User> search(String key, String keyword) {
         Connection conn = DBUtil.getConnection();
         List<User> users = new ArrayList<>();
         String sql = "SELECT * FROM user WHERE " + key + " like '%" + keyword + "%'";
@@ -60,7 +60,7 @@ public class UserDaoImpl implements  UserDao{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            DBUtil.release(conn,statement,rs);
+            DBUtil.release(conn, statement, rs);
         }
 
         return users;
@@ -75,16 +75,16 @@ public class UserDaoImpl implements  UserDao{
         Integer result = null;
         try {
             statement = conn.prepareStatement(sql);
-            statement.setString(1,user.getUsername());
-            statement.setString(2,user.getPassword());
-            statement.setString(3,user.getEmail());
-            statement.setString(4,user.getTelephone());
-            statement.setString(5,user.getGender());
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, user.getEmail());
+            statement.setString(4, user.getTelephone());
+            statement.setString(5, user.getGender());
             result = statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            DBUtil.release(conn,statement,null );
+            DBUtil.release(conn, statement, null);
         }
 
         return result;
@@ -99,17 +99,17 @@ public class UserDaoImpl implements  UserDao{
         Integer result = null;
         try {
             statement = conn.prepareStatement(sql);
-            statement.setString(1,user.getUsername());
-            statement.setString(2,user.getPassword());
-            statement.setString(3,user.getEmail());
-            statement.setString(4,user.getTelephone());
-            statement.setString(5,user.getGender());
-            statement.setInt(6,user.getId());
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, user.getEmail());
+            statement.setString(4, user.getTelephone());
+            statement.setString(5, user.getGender());
+            statement.setInt(6, user.getId());
             result = statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            DBUtil.release(conn,statement,null );
+            DBUtil.release(conn, statement, null);
         }
 
         return result;
@@ -118,9 +118,19 @@ public class UserDaoImpl implements  UserDao{
     @Override
     public Integer delete(Integer id) {
         Connection conn = DBUtil.getConnection();
-        String sql = "delete from user where id = " + id;
         PreparedStatement statement = null;
         Integer result = null;
+
+        // 先需要删除用户的所有博客
+        String sql = "delete from blog where author_id = " + id;
+        try {
+            statement = conn.prepareStatement(sql);
+            result = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        // 再删除用户
+        sql = "delete from user where id = " + id;
         try {
             statement = conn.prepareStatement(sql);
             result = statement.executeUpdate();
@@ -129,7 +139,6 @@ public class UserDaoImpl implements  UserDao{
         } finally {
             DBUtil.release(conn, statement, null);
         }
-
         return result;
     }
 }
