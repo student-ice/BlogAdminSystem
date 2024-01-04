@@ -10,7 +10,7 @@ public interface UserDao {
      *
      * @return List<User> 用户列表
      */
-    public List<User> getAllUsers();
+    List<User> getAllUsers();
 
     /**
      * 搜索用户
@@ -19,7 +19,7 @@ public interface UserDao {
      * @param keyword 搜索关键字
      * @return List<User> 搜索到的用户列表
      */
-    public List<User> search(String key, String keyword);
+    List<User> search(String key, String keyword);
 
     /**
      * 添加用户
@@ -27,7 +27,7 @@ public interface UserDao {
      * @param user 用户对象
      * @return Integer 添加成功返回1，否则返回0
      */
-    public Integer save(User user);
+    Integer save(User user);
 
     /**
      * 修改用户信息
@@ -35,7 +35,7 @@ public interface UserDao {
      * @param user 用户对象
      * @return Integer 修改成功返回1，否则返回0
      */
-    public Integer update(User user);
+    Integer update(User user);
 
     /**
      * 删除用户
@@ -43,5 +43,5 @@ public interface UserDao {
      * @param id 用户id
      * @return Integer 删除成功返回1，否则返回0
      */
-    public Integer delete(Integer id);
+    Integer delete(Integer id);
 }

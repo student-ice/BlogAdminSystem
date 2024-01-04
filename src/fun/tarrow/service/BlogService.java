@@ -11,7 +11,7 @@ public interface BlogService {
      *
      * @return List<Blog> 返回所有博客
      */
-    public List<Blog> getAllBlogs();
+    List<Blog> getAllBlogs();
 
     /**
      * 搜索博客
@@ -20,12 +20,12 @@ public interface BlogService {
      * @param keyword 搜索关键字
      * @return List<Blog> 搜索到的博客列表
      */
-    public List<Blog> search(String key, String keyword);
+    List<Blog> search(String key, String keyword);
 
     /**
      * 删除博客
      *
      * @param id 博客id
      */
-    public void delete(int id);
+    void delete(int id);
 }

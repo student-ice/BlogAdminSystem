@@ -10,7 +10,7 @@ public interface BlogDao {
      *
      * @return List<Blog> 博客列表
      */
-    public List<Blog> getAllBlogs();
+    List<Blog> getAllBlogs();
 
     /**
      * 搜索博客
@@ -19,7 +19,7 @@ public interface BlogDao {
      * @param keyword 搜索关键字
      * @return List<Blog> 搜索到的博客列表
      */
-    public List<Blog> search(String key, String keyword);
+    List<Blog> search(String key, String keyword);
 
     /**
      * 删除博客
@@ -27,6 +27,6 @@ public interface BlogDao {
      * @param id 博客id
      * @return Integer 删除结果 1：成功 0：失败
      */
-    public Integer delete(int id);
+    Integer delete(int id);
 
 }

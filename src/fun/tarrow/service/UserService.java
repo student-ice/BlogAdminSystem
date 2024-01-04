@@ -10,7 +10,7 @@ public interface UserService {
      *
      * @return List<User> 所有用户列表
      */
-    public List<User> getAllUsers();
+    List<User> getAllUsers();
 
     /**
      * 搜索用户
@@ -19,26 +19,26 @@ public interface UserService {
      * @param keyword 搜索关键字
      * @return List<User> 搜索到的用户列表
      */
-    public List<User> search(String key, String keyword);
+    List<User> search(String key, String keyword);
 
     /**
      * 添加用户
      *
      * @param user 用户对象
      */
-    public void save(User user);
+    void save(User user);
 
     /**
      * 修改用户信息
      *
      * @param user 用户对象
      */
-    public void update(User user);
+    void update(User user);
 
     /**
      * 删除用户
      *
      * @param id 要删除的用户id
      */
-    public void delete(Integer id);
+    void delete(Integer id);
 }
