@@ -17,9 +17,14 @@
     <title>管理后台</title>
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
         html,
         body {
             height: 100%;
+            overflow: hidden;
         }
     </style>
 </head>
