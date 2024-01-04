@@ -10,18 +10,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//  通过 @WebServlet 注解配置了一个 Servlet，这个 Servlet 的路径是 /userManager
 @WebServlet("/userManager")
 public class UserServlet extends HttpServlet {
+    // 创建一个 UserServiceImpl 对象，用于处理业务逻辑
     private final UserServiceImpl userServiceImpl = new UserServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        // 统一调用doPost方法
         this.doPost(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        // 设置编码,防止中文乱码
         request.setCharacterEncoding("UTF-8");
+        // 获取请求参数 method
         String method = request.getParameter("method");
         int id;
         String username;

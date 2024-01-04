@@ -1,15 +1,28 @@
 package fun.tarrow.entity;
 
+/**
+ * 博客实体类
+ */
 public class Blog {
+    // 博客id
     private Integer id;
+    // 博客标题
     private String title;
+    // 博客内容
     private String content;
+    // 博客作者id
     private Integer authorId;
+    // 博客作者名
     private String authorName;
+    // 博客状态 draft:草稿 published:已发布
     private String status;
+    // 博客浏览量
     private Integer viewCount;
+    // 博客评论数
     private Integer commentCount;
+    // 博客创建时间
     private String createTime;
+    // 博客更新时间
     private String updateTime;
 
     public Integer getId() {

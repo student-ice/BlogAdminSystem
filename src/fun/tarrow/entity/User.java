@@ -1,15 +1,21 @@
 package fun.tarrow.entity;
 
+/**
+ * Blog实体类
+ */
 public class User {
+    // 用户id
     private Integer id;
+    // 用户名
     private String username;
+    // 用户密码
     private String password;
+    // 用户邮箱
     private String email;
-
+    // 用户电话
     private String telephone;
-
+    // 用户性别
     private String gender;
-
 
     public User() {
 

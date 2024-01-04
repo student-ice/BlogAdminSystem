@@ -1,9 +1,9 @@
 package fun.tarrow.util;
 
-import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 
 public class DBUtil {
+    // 数据库连接参数
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String DB_URL = "jdbc:mysql://localhost:3306/blogadmindb";
     private static final String USER = "root";
@@ -17,6 +17,11 @@ public class DBUtil {
         }
     }
 
+    /**
+     * 获取数据库连接
+     *
+     * @return Connection 数据库连接
+     */
     public static Connection getConnection() {
         Connection conn = null;
         try {
@@ -27,15 +32,22 @@ public class DBUtil {
         return conn;
     }
 
+    /**
+     * 释放资源
+     *
+     * @param conn      要释放的Connection对象
+     * @param statement 要释放的PreparedStatement对象
+     * @param resultSet 要释放的ResultSet对象
+     */
     public static void release(Connection conn, PreparedStatement statement, ResultSet resultSet) {
         try {
-            if (conn != null){
+            if (conn != null) {
                 conn.close();
             }
-            if (statement != null){
+            if (statement != null) {
                 statement.close();
             }
-            if (resultSet != null){
+            if (resultSet != null) {
                 resultSet.close();
             }
         } catch (SQLException e) {

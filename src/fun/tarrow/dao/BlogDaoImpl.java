@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+// 实现了 BlogDao 接口
 public class BlogDaoImpl implements BlogDao{
     @Override
     public List<Blog> getAllBlogs() {
