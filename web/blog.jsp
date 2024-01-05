@@ -21,6 +21,7 @@
         <div class="col-auto">
             <select class="form-select" name="key">
                 <option value="title">博客名</option>
+                <option value="status">状态</option>
             </select>
         </div>
         <div class="col-auto">
